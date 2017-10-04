@@ -7,24 +7,25 @@ import org.junit.Ignore;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
+import java.time.Duration;
+import java.time.Instant;
 import java.util.Arrays;
 import java.util.Collection;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertTrue;
-
+import static org.junit.Assert.*;
 
 /**
- * Created by developer on 10/1/17.
+ * Created by developer on 10/4/17.
  */
-@RunWith(value= Parameterized.class)
-public class MergeSortTest {
-    private SortAlgorithm algortigm;
+@RunWith(value = Parameterized.class)
+public class BubbleSortOptimizedTest {
+
+    private SortAlgorithm algorithm;
 
     private Integer[] inputList;
     private Integer[] expectedList;
 
-    public MergeSortTest(Integer[] input, Integer[] output) {
+    public BubbleSortOptimizedTest(Integer[] input, Integer[] output) {
         this.inputList = input;
         this.expectedList = output;
     }
@@ -38,31 +39,34 @@ public class MergeSortTest {
 
     @org.junit.Before
     public void setUp() throws Exception {
-        algortigm = new MergeSort();
+        algorithm = new BubbleSortOptimized();
     }
 
     @org.junit.After
     public void tearDown() throws Exception {
-        algortigm = null;
+        algorithm = null;
     }
 
     @org.junit.Test
+    @Ignore
     public void sort() throws Exception {
-        Integer [] sortedArray = algortigm.sort(this.inputList);
-        //algortigm.print(sortedArray);
-        //System.out.println();
-        //algortigm.print(expectedList);
+        Integer [] sortedArray = algorithm.sort(this.inputList);
+        algorithm.print(sortedArray);
+        System.out.println();
+        algorithm.print(expectedList);
 
         Assert.assertArrayEquals(sortedArray, expectedList);
     }
 
     @org.junit.Test
     public void sortRandom() throws Exception {
-        Integer array[] = algortigm.generateValues(3, 0, 10);
-        //algortigm.print(array);
-        array = algortigm.sort(array);
-        //algortigm.print(array);
+        Integer array[] = algorithm.generateValues(3000, -1000, 1000);
+        Instant start = Instant.now();
+        array = algorithm.sort(array);
+        Instant finish = Instant.now();
+        System.out.println(Duration.between(start, finish).toMillis());
         assertTrue(Ordering.natural().isOrdered(Arrays.asList(array)));
     }
+
 
 }

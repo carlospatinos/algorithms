@@ -5,15 +5,15 @@ package com.algorithms;
  */
 public class MergeSort implements SortAlgorithm {
 
-    private int[] array;
-    private int[] tempMergArr;
+    private Integer[] array;
+    private Integer[] tempMergArr;
     private int length;
 
     @Override
-    public int[] sort(int[] array) {
+    public Integer[] sort(Integer[] array) {
         this.array = array;
         this.length = array.length;
-        this.tempMergArr = new int[length];
+        this.tempMergArr = new Integer[length];
         this.mergeSort(0, length - 1);
 
         return array;

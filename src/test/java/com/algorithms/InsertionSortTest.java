@@ -3,6 +3,8 @@ package com.algorithms;
 import com.google.common.collect.Ordering;
 import com.google.common.primitives.Ints;
 
+import java.util.Arrays;
+
 import static org.junit.Assert.*;
 
 
@@ -24,13 +26,13 @@ public class InsertionSortTest {
 
     @org.junit.Test
     public void sort() throws Exception {
-        int array[] = algortigm.generateValues(10, 0, 10);
+        Integer array[] = algortigm.generateValues(10, 0, 10);
         array = algortigm.sort(array);
-        assertTrue(Ordering.natural().isOrdered(Ints.asList(array)));
+        assertTrue(Ordering.natural().isOrdered(Arrays.asList(array)));
 
         array = algortigm.generateValues(100, -10, 10);
         array = algortigm.sort(array);
-        assertTrue(Ordering.natural().isOrdered(Ints.asList(array)));
+        assertTrue(Ordering.natural().isOrdered(Arrays.asList(array)));
     }
 
 }
