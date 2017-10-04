@@ -4,44 +4,54 @@ package com.algorithms;
  * Created by developer on 10/3/17.
  */
 public class MergeSort implements SortAlgorithm {
+
+    private int[] array;
+    private int[] tempMergArr;
+    private int length;
+
     @Override
     public int[] sort(int[] array) {
-        return mergeSort(array, 0, array.length);
-    }
+        this.array = array;
+        this.length = array.length;
+        this.tempMergArr = new int[length];
+        this.mergeSort(0, length - 1);
 
-    public int[] mergeSort(int[] array, int low, int high) {
-        if (low < high) {
-            int middle = (low + high) /2 ;
-            mergeSort(array, low, middle);
-            mergeSort(array, middle+1, high);
-            return merge(array, low, middle, high);
-        }
-        return null;
-    }
-
-    private int[] merge(int[] array, int low, int middle, int high) {
-        int[] helper = new int[array.length];
-        System.arraycopy(array, 0, helper, 0, array.length);
-
-        int helperLeft = low;
-        int helperRight = middle+1;
-        int current = low;
-
-        while(helperLeft <= middle && helperRight <= high){
-            if(helper[helperLeft] <= helper[helperRight]){
-                array[current] = helper[helperLeft];
-                helperLeft++;
-            } else {
-                array[current] = helper[helperRight];
-                helperRight++;
-            }
-            current++;
-        }
-
-        int remaining = middle - helperLeft;
-        for(int i = 0; i<= remaining; i++){
-            array[current+i] = helper[helperLeft+i];
-        }
         return array;
+    }
+
+    public void mergeSort(int lowerIndex, int higherIndex) {
+        if (lowerIndex < higherIndex) {
+            int middle = lowerIndex + (higherIndex - lowerIndex) / 2;
+            // Below step sorts the left side of the array
+            mergeSort(lowerIndex, middle);
+            // Below step sorts the right side of the array
+            mergeSort(middle + 1, higherIndex);
+            // Now merge both sides
+            merge(lowerIndex, middle, higherIndex);
+        }
+    }
+
+    private void merge(int lowerIndex, int middle, int higherIndex) {
+        for (int i = lowerIndex; i <= higherIndex; i++) {
+            tempMergArr[i] = array[i];
+        }
+        int i = lowerIndex;
+        int j = middle + 1;
+        int k = lowerIndex;
+        while (i <= middle && j <= higherIndex) {
+            if (tempMergArr[i] <= tempMergArr[j]) {
+                array[k] = tempMergArr[i];
+                i++;
+            } else {
+                array[k] = tempMergArr[j];
+                j++;
+            }
+            k++;
+        }
+        while (i <= middle) {
+            array[k] = tempMergArr[i];
+            k++;
+            i++;
+        }
     }
 }

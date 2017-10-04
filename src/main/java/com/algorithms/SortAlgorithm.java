@@ -23,5 +23,6 @@ public interface SortAlgorithm {
         for (int current: array) {
             System.out.print(current + "," );
         }
+        System.out.println();
     }
 }
