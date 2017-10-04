@@ -1,38 +1,51 @@
 package com.algorithms;
 
-import com.google.common.collect.Ordering;
-import com.google.common.primitives.Ints;
+import org.junit.Assert;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 
 import java.util.Arrays;
-
-import static org.junit.Assert.*;
+import java.util.Collection;
 
 
 /**
  * Created by developer on 10/1/17.
  */
+@RunWith(value = Parameterized.class)
 public class InsertionSortTest {
-    private SortAlgorithm algortigm;
+    private SortAlgorithm algorithm;
+
+    private Integer[] inputList;
+    private Integer[] expectedList;
+
+    public InsertionSortTest(Integer[] input, Integer[] output) {
+        this.inputList = input;
+        this.expectedList = output;
+    }
+
+    @Parameterized.Parameters(name = "Test {index}: testSort({0}) = {1}")
+    public static Collection testCases() {
+        return Arrays.asList(new Integer[][][] {
+                {{1,3,6,2, 2, 3, 9, 10}, {1, 2, 2, 3, 3, 6, 9, 10}},
+                {{1,3}, {1, 3}},
+                {{1}, {1}}
+        });
+    }
 
     @org.junit.Before
     public void setUp() throws Exception {
-        algortigm = new InsertionSort();
+        algorithm = new InsertionSort();
     }
 
     @org.junit.After
     public void tearDown() throws Exception {
-        algortigm = null;
+        algorithm = null;
     }
 
     @org.junit.Test
     public void sort() throws Exception {
-        Integer array[] = algortigm.generateValues(10, 0, 10);
-        array = algortigm.sort(array);
-        assertTrue(Ordering.natural().isOrdered(Arrays.asList(array)));
-
-        array = algortigm.generateValues(100, -10, 10);
-        array = algortigm.sort(array);
-        assertTrue(Ordering.natural().isOrdered(Arrays.asList(array)));
+        Integer [] sortedArray = algorithm.sort(this.inputList);
+        Assert.assertArrayEquals(sortedArray, expectedList);
     }
 
 }

@@ -32,7 +32,9 @@ public class MergeSortTest {
     @Parameterized.Parameters(name = "Test {index}: testSort({0}) = {1}")
     public static Collection testCases() {
         return Arrays.asList(new Integer[][][] {
-                {{1,3,6,2, 2, 3}, {1, 2, 2, 3, 3, 6}}
+                {{1,3,6,2, 2, 3, 9, 10}, {1, 2, 2, 3, 3, 6, 9, 10}},
+                {{1,3}, {1, 3}},
+                {{1}, {1}}
         });
     }
 
@@ -49,20 +51,6 @@ public class MergeSortTest {
     @org.junit.Test
     public void sort() throws Exception {
         Integer [] sortedArray = algortigm.sort(this.inputList);
-        //algortigm.print(sortedArray);
-        //System.out.println();
-        //algortigm.print(expectedList);
-
         Assert.assertArrayEquals(sortedArray, expectedList);
     }
-
-    @org.junit.Test
-    public void sortRandom() throws Exception {
-        Integer array[] = algortigm.generateValues(3, 0, 10);
-        //algortigm.print(array);
-        array = algortigm.sort(array);
-        //algortigm.print(array);
-        assertTrue(Ordering.natural().isOrdered(Arrays.asList(array)));
-    }
-
 }
