@@ -41,8 +41,10 @@ public class SortAlgorithmsBenchMarking {
             Map.Entry pair = (Map.Entry)it.next();
             SortAlgorithm algorithm = (SortAlgorithm) pair.getValue();
 
+            Integer [] unsortedCopy = Arrays.copyOf(unsortedArray, unsortedArray.length);
+
             Instant start = Instant.now();
-            Integer sortedArray[] = algorithm.sort(unsortedArray);
+            Integer sortedArray[] = algorithm.sort(unsortedCopy);
             Instant finish = Instant.now();
 
             assertTrue(Ordering.natural().isOrdered(Arrays.asList(sortedArray)));
