@@ -13,7 +13,7 @@ import static org.junit.Assert.assertTrue;
  * Created by developer on 10/4/17.
  */
 public class SortAlgorithmsBenchMarking {
-    private static final int SIZE_OF_ARRAY = 3000;
+    private static final int SIZE_OF_ARRAY = 5000;
     private Map<String, SortAlgorithm> algortigms;
 
 
@@ -23,6 +23,7 @@ public class SortAlgorithmsBenchMarking {
         algortigms.put("InsertionSort", new InsertionSort());
         algortigms.put("MergeSort", new MergeSort());
         algortigms.put("BubbleSortOptimized", new BubbleSortOptimized());
+        algortigms.put("BubbleSort", new BubbleSort());
     }
 
     @org.junit.After
@@ -51,7 +52,7 @@ public class SortAlgorithmsBenchMarking {
 
             long duration = Duration.between(start, finish).toMillis();
 
-            System.out.format("%s took %d milliseconds to sort %d elements. \n", pair.getKey(), duration, sizeOfTheUnsortedArray);
+            System.out.format("%20s took %5d milliseconds to sort %10d elements. \n", pair.getKey(), duration, sizeOfTheUnsortedArray);
             it.remove();
         }
 

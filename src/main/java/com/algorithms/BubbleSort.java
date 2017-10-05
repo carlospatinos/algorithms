@@ -6,6 +6,17 @@ package com.algorithms;
 public class BubbleSort implements SortAlgorithm {
     @Override
     public Integer[] sort(Integer[] array) {
-        return new Integer[0];
+        int length = array.length;
+        for(int i=0; i< length -1; i++) {
+            for(int j=0; j< length - i - 1; j++){
+                int tmp = 0;
+                if(array[j] > array[j+1]){
+                    tmp = array[j+1];
+                    array[j+1]=array[j];
+                    array[j]=tmp;
+                }
+            }
+        }
+        return array;
     }
 }
