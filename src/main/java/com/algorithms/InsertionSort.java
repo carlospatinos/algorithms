@@ -7,7 +7,7 @@ public class InsertionSort implements SortAlgorithm{
 
     // 3, 4, 1
     @Override
-    public Integer[] sort(Integer[] array) {
+    public void sort(Integer[] array) {
         int valueToMove = 0;
         for(int posToMove = 1; posToMove < array.length; posToMove++) {
             valueToMove = array[posToMove];
@@ -18,8 +18,6 @@ public class InsertionSort implements SortAlgorithm{
             }
             array[i+1] = valueToMove;
         }
-
-        return array;
     }
 
 }

@@ -50,7 +50,7 @@ public class MergeSortTest {
 
     @org.junit.Test
     public void sort() throws Exception {
-        Integer [] sortedArray = algortigm.sort(this.inputList);
-        Assert.assertArrayEquals(sortedArray, expectedList);
+        algortigm.sort(inputList);
+        Assert.assertArrayEquals(inputList, expectedList);
     }
 }

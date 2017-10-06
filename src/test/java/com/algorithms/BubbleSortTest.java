@@ -49,8 +49,8 @@ public class BubbleSortTest {
 
     @Test
     public void sort() throws Exception {
-        Integer [] sortedArray = algorithm.sort(this.inputList);
-        Assert.assertArrayEquals(sortedArray, expectedList);
+        algorithm.sort(this.inputList);
+        Assert.assertArrayEquals(inputList, expectedList);
     }
 
 }

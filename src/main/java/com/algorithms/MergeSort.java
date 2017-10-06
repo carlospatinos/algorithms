@@ -10,13 +10,11 @@ public class MergeSort implements SortAlgorithm {
     private int length;
 
     @Override
-    public Integer[] sort(Integer[] array) {
+    public void sort(Integer[] array) {
         this.array = array;
         this.length = array.length;
         this.tempMergArr = new Integer[length];
         this.mergeSort(0, length - 1);
-
-        return array;
     }
 
     public void mergeSort(int lowerIndex, int higherIndex) {

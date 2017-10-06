@@ -5,24 +5,20 @@ package com.algorithms;
  */
 public class BubbleSortOptimized implements SortAlgorithm {
     @Override
-    public Integer[] sort(Integer[] array) {
-        while(sort1(array));
-        return array;
-    }
-
-
-    public boolean sort1(Integer [] array) {
-        boolean flag  = false;
-        int length = array.length - 1;
-
-        for (int i = 0; i < length; i++) {
-            if(array[i] > array[i+1]) {
-                int tmp = array[i];
-                array[i] = array[i+1];
-                array[i+1] = tmp;
-                flag = true;
+    public void sort(Integer[] array) {
+        int length = array.length;
+        for(int i=0; i< length -1; i++) {
+            for(int j=0; j< length - i - 1; j++){
+                int tmp = 0;
+                if(array[j] > array[j+1]){
+                    tmp = array[j+1];
+                    array[j+1]=array[j];
+                    array[j]=tmp;
+                }
             }
         }
-        return flag;
     }
+
+
+
 }

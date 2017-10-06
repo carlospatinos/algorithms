@@ -13,7 +13,7 @@ import static org.junit.Assert.assertTrue;
  * Created by developer on 10/4/17.
  */
 public class SortAlgorithmsBenchMarking {
-    private static final int SIZE_OF_ARRAY = 5000;
+    private static final int SIZE_OF_ARRAY = 6000;
     private Map<String, SortAlgorithm> algortigms;
 
 
@@ -45,7 +45,8 @@ public class SortAlgorithmsBenchMarking {
             Integer [] unsortedCopy = Arrays.copyOf(unsortedArray, unsortedArray.length);
 
             Instant start = Instant.now();
-            Integer sortedArray[] = algorithm.sort(unsortedCopy);
+            Integer sortedArray[] = unsortedCopy.clone();
+            algorithm.sort(sortedArray);
             Instant finish = Instant.now();
 
             assertTrue(Ordering.natural().isOrdered(Arrays.asList(sortedArray)));

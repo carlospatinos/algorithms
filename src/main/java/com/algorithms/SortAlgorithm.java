@@ -7,5 +7,5 @@ import java.util.Random;
  */
 public interface SortAlgorithm {
 
-    Integer[] sort(Integer[] array);
+    void sort(Integer[] array);
 }
