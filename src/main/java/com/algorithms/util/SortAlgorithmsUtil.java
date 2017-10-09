@@ -1,4 +1,4 @@
-package com.algorithms.com.algorithms.util;
+package com.algorithms.util;
 
 import java.util.Random;
 

@@ -1,6 +1,6 @@
 package com.algorithms;
 
-import com.algorithms.com.algorithms.util.SortAlgorithmsUtil;
+import com.algorithms.util.SortAlgorithmsUtil;
 import com.google.common.collect.Ordering;
 
 import java.time.Duration;
