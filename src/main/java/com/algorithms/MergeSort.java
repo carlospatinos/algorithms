@@ -17,6 +17,12 @@ public class MergeSort implements SortAlgorithm {
         this.mergeSort(0, length - 1);
     }
 
+
+    @Override
+    public String getBigOTimeComplexity() {
+        return "O(n log n)";
+    }
+
     public void mergeSort(int lowerIndex, int higherIndex) {
         if (lowerIndex < higherIndex) {
             int middle = lowerIndex + (higherIndex - lowerIndex) / 2;

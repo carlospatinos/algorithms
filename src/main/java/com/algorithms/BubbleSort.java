@@ -7,6 +7,11 @@ import java.util.Arrays;
  */
 public class BubbleSort implements SortAlgorithm {
     @Override
+    public String getBigOTimeComplexity() {
+        return "O(n2)";
+    }
+
+    @Override
     public void sort(Integer[] array) {
         int length = array.length;
         for(int i=0; i< length -1; i++) {

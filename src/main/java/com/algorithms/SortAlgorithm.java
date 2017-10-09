@@ -8,4 +8,17 @@ import java.util.Random;
 public interface SortAlgorithm {
 
     void sort(Integer[] array);
+
+    default String getName() {
+        String name = null;
+        Class<?> enclosingClass = getClass().getEnclosingClass();
+        if (enclosingClass != null) {
+            name = enclosingClass.getSimpleName();
+        } else {
+            name = getClass().getSimpleName();
+        }
+        return name;
+    }
+
+    String getBigOTimeComplexity();
 }

@@ -4,7 +4,10 @@ package com.algorithms;
  * Created by developer on 10/1/17.
  */
 public class InsertionSort implements SortAlgorithm{
-
+    @Override
+    public String getBigOTimeComplexity() {
+        return "O(n2)";
+    }
     // 3, 4, 1
     @Override
     public void sort(Integer[] array) {

@@ -14,16 +14,16 @@ import static org.junit.Assert.assertTrue;
  */
 public class SortAlgorithmsBenchMarking {
     private static final int SIZE_OF_ARRAY = 6000;
-    private Map<String, SortAlgorithm> algortigms;
+    private List<SortAlgorithm> algortigms;
 
 
     @org.junit.Before
     public void setUp() throws Exception {
-        algortigms = new HashMap<>();
-        algortigms.put("InsertionSort", new InsertionSort());
-        algortigms.put("MergeSort", new MergeSort());
-        algortigms.put("BubbleSortOptimized", new BubbleSortOptimized());
-        algortigms.put("BubbleSort", new BubbleSort());
+        algortigms = new ArrayList<>();
+        algortigms.add(new BubbleSort());
+        algortigms.add(new BubbleSortOptimized());
+        algortigms.add(new InsertionSort());
+        algortigms.add(new MergeSort());
     }
 
     @org.junit.After
@@ -37,25 +37,22 @@ public class SortAlgorithmsBenchMarking {
     public void sortRandom() throws Exception {
         Integer unsortedArray[] = SortAlgorithmsUtil.generateValues(SIZE_OF_ARRAY, -3000, 3000);
         int sizeOfTheUnsortedArray = unsortedArray.length;
-        Iterator it = algortigms.entrySet().iterator();
-        while (it.hasNext()) {
-            Map.Entry pair = (Map.Entry)it.next();
-            SortAlgorithm algorithm = (SortAlgorithm) pair.getValue();
 
+        for(SortAlgorithm concreteImplementation: algortigms) {
             Integer [] unsortedCopy = Arrays.copyOf(unsortedArray, unsortedArray.length);
 
             Instant start = Instant.now();
             Integer sortedArray[] = unsortedCopy.clone();
-            algorithm.sort(sortedArray);
+            concreteImplementation.sort(sortedArray);
             Instant finish = Instant.now();
 
             assertTrue(Ordering.natural().isOrdered(Arrays.asList(sortedArray)));
 
             long duration = Duration.between(start, finish).toMillis();
 
-            System.out.format("%20s took %5d milliseconds to sort %10d elements. \n", pair.getKey(), duration, sizeOfTheUnsortedArray);
-            it.remove();
+            System.out.format("%20s took %5d milliseconds to sort %6d elements. Complexity is %s.\n", concreteImplementation.getName(), duration, sizeOfTheUnsortedArray, concreteImplementation.getBigOTimeComplexity());
         }
+
 
 
 
