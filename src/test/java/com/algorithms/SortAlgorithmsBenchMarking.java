@@ -14,22 +14,22 @@ import static org.junit.Assert.assertTrue;
  */
 public class SortAlgorithmsBenchMarking {
     private static final int SIZE_OF_ARRAY = 6000;
-    private List<SortAlgorithm> algortigms;
+    private List<SortAlgorithm> algorithms;
 
 
     @org.junit.Before
     public void setUp() throws Exception {
-        algortigms = new ArrayList<>();
-        algortigms.add(new BubbleSort());
-        algortigms.add(new BubbleSortOptimized());
-        algortigms.add(new InsertionSort());
-        algortigms.add(new MergeSort());
+        algorithms = new ArrayList<>();
+        algorithms.add(new BubbleSort());
+        algorithms.add(new BubbleSortOptimized());
+        algorithms.add(new InsertionSort());
+        algorithms.add(new MergeSort());
     }
 
     @org.junit.After
     public void tearDown() throws Exception {
-        if(algortigms != null) {
-            algortigms.clear();
+        if(algorithms != null) {
+            algorithms.clear();
         }
     }
 
@@ -38,7 +38,7 @@ public class SortAlgorithmsBenchMarking {
         Integer unsortedArray[] = SortAlgorithmsUtil.generateValues(SIZE_OF_ARRAY, -3000, 3000);
         int sizeOfTheUnsortedArray = unsortedArray.length;
 
-        for(SortAlgorithm concreteImplementation: algortigms) {
+        for(SortAlgorithm concreteImplementation: algorithms) {
             Integer [] unsortedCopy = Arrays.copyOf(unsortedArray, unsortedArray.length);
 
             Instant start = Instant.now();
